@@ -1,0 +1,150 @@
+/* General Body Styling */
+body {
+    background-color: #D68490;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header Styling */
+h1 {
+    color: #2c3e50;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Container Styling */
+.container {
+    margin-top: 30px;
+    background-color:#BFD7EA;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Ensure the sections are aligned side by side */
+}
+
+
+/* Filter Section Styling (Left) */
+.col-md-4 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.col-md-8 {
+    padding: 20px;
+}
+
+/* Button Styling */
+.btn {
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 10px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success {
+    background-color: #9eecb0;
+    border-color: #28a745;
+    color: black;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-primary {
+    background-color: #d4e2f1;
+    border-color: #b2cce7;
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-danger {
+    background-color: #f0a4ab;
+    border-color: #e78993;
+    color: black;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+.home-icon {
+    font-size: 30px;
+    color: #007bff;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.home-icon:hover {
+    color: #0056b3;
+}
+
+/* Table Styling */
+table.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+tbody tr {
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.01);
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #2c3e50;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .col-md-4, .col-md-8 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

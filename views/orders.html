@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="orders.css" rel="stylesheet">
+    <title>Orders</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- Left Div for Filter and Sort -->
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <i class="bi bi" onclick="window.location.href='index.html';" style="font-size: 30px; cursor: pointer; color: #2c3e50;"> <img src="arrow.png"style="border-radius: 500px; max-width: 50px;"><img src="logo.jpg" style="border-radius: 500px; max-width: 100px;"></i><br>
+                   
+                    <label for="orderStatusFilter" class="form-label">Filter by Status</label>
+                    <select id="orderStatusFilter" class="form-control" onchange="applyFilter()">
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <!-- Sort by Price and Date -->
+                <div class="mb-3">
+                    <button class="btn btn-primary" onclick="sortOrders('date')">Sort by Date</button>
+                    <button class="btn btn-primary" onclick="sortOrders('price')">Sort by Price</button>
+                </div>
+            </div>
+
+            <!-- Right Div for Orders Table -->
+            <div class="col-md-8">
+                <h1 class="mt-4">Orders</h1>
+                <div class="mb-3">
+                    <button class="btn btn-success " onclick="showAddOrderForm()">Add New Order</button>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Products</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Order Form -->
+    <div id="orderForm" class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Add Order</h5>
+                    <button type="button" class="btn-close" onclick="hideOrderForm()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderFormFields">
+                        <div class="mb-3">
+                            <label for="orderUser" class="form-label">Customer</label>
+                            <select class="form-control" id="orderUser" required></select>
+                        </div>
+                        <div id="productLines">
+                            <!-- Product lines will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-secondary mb-3" onclick="addProductLine()">Add Product Line</button>
+                        <div class="mb-3">
+                            <label for="hst" class="form-label">HST</label>
+                            <input type="number" class="form-control" id="hst" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderTotal" class="form-label">Total Price</label>
+                            <input type="number" class="form-control" id="orderTotal" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderStatus" class="form-label">Status</label>
+                            <select class="form-control" id="orderStatus">
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="orderDate" class="form-label">Order Date</label>
+                            <input type="datetime-local" class="form-control" id="orderDate" required>
+                        </div>
+                        <input type="hidden" id="orderId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="hideOrderForm()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveOrder()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/orders.js"></script>
+</body>
+</html>

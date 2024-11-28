@@ -1,0 +1,137 @@
+/* General Body and Page Styling */
+body {
+    background-color: #F4F4F4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Navigation Panel */
+.nav {
+    background: linear-gradient(135deg, #D68490, #F8AB5B); /* Gradient background */
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    justify-content: flex-start;
+    height: 100vh; /* Ensure the navigation spans the full height */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    position: relative;
+    position: sticky;
+    top: 0;
+    height: 100vh;  /* Ensure the navigation bar takes up the full height of the viewport */
+   
+    z-index: 1000;  /
+}
+.bottom-image {
+    position: absolute; /* Position the image relative to its parent (the nav container) */
+    bottom: 0; /* Fix the image to the bottom of the container */
+    width: 100%; /* Ensure the image spans the full width */
+    text-align: center; /* Center the image horizontally */
+    margin: 0;
+}
+
+.bottom-img {
+    margin: 0;
+    width: 110%; /* Adjust the size of the bottom image as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Logo Styling */
+.logo {
+    margin-bottom: 30px;
+}
+
+.logo-img {
+    max-width: 100%;
+    height: auto;
+    max-height: 100px; /* Set a maximum height for the logo */
+    border-radius: 50px;
+}
+
+/* Navigation Links */
+.nav .links a {
+    background-color: #F8AB5B;
+    color: #151515;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav .links a:hover {
+    background-color: #9CF6F6;
+    color: #151515;
+    transform: scale(1.05);
+}
+
+/* Content Area */
+.col-md-9 {
+    background: linear-gradient(135deg, #BFD7EA, #A4D3E2); 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Headings */
+h1, h2 {
+    color: #3D1D23;
+    font-weight: bold;
+}
+
+/* Order Cards */
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.order-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.order-card h5 {
+    font-size: 1.2rem;
+    color: #D68490;
+}
+
+.order-card p {
+    font-size: 1rem;
+    color: #151515;
+}
+
+.order-card strong {
+    font-weight: bold;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .col-md-3, .col-md-9 {
+        padding: 15px;
+    }
+
+    .order-card {
+        padding: 15px;
+    }
+
+    .nav {
+        height: auto; /* Allow the nav to adjust height on smaller screens */
+        padding: 10px;
+    }
+}

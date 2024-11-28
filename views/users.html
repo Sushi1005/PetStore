@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Users</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Users</h1>
+        <div class="mb-3">
+            <button class="btn btn-success" onclick="showAddUserForm()">Add New User</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="user-list"></tbody>
+        </table>
+    </div>
+
+    <!-- Add/Edit User Form -->
+    <div id="userForm" class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Add User</h5>
+                    <button type="button" class="btn-close" onclick="hideUserForm()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="userFormFields">
+                        <!-- Name Field (Username) -->
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="userName" required pattern="[A-Za-z]+" minlength="3" maxlength="50">
+                            <div class="invalid-feedback">
+                                Name must contain only letters and be between 3 and 50 characters long.
+                            </div>
+                        </div>
+                        <!-- Email Field -->
+                         <div class="mb-3">
+                        <label for="userEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="userEmail" required>
+                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                         </div>
+
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label for="userPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="userPassword" required minlength="4">
+                            <div class="invalid-feedback">
+                                Password must be at least 4 characters long.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userRole" class="form-label">Role</label>
+                            <select class="form-control" id="userRole">
+                                <option value="customer">Customer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userAddress" class="form-label">Address</label>
+                            <textarea class="form-control" id="userAddress"></textarea>
+                        </div>
+                        <input type="hidden" id="userId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="hideUserForm()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUser()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/users.js"></script>
+</body>
+
+</html>

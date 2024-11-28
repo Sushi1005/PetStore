@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Supplies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Navigation Links -->
+            <div class="col-md-3 nav d-flex flex-column">
+                <!-- Logo -->
+                <div class="logo mb-4 text-center">
+                    <img src="/logo.jpg" alt="Pet Supplies Logo" class="logo-img">
+                </div>
+
+                <div class="links">
+                    <a href="/products" class="btn nav-btn mb-2">Products</a>
+                    <a href="/orders" class="btn nav-btn mb-2">Orders</a>
+                    <a href="/categories" class="btn nav-btn mb-2">Categories</a>
+                    <a href="/users" class="btn nav-btn mb-2">Users</a>
+                </div>
+                <div class="bottom-image mt-auto">
+                    <img src="doggies.png" alt="Bottom Image" class="bottom-img">
+                </div>
+            </div>
+
+            <!-- Welcome Heading and Content -->
+            <div class="col-md-9">
+                <h1 class="ms-auto text-center" >Welcome to Pawzy</h1>
+                <div class="container mt-5">
+                    <h2 class="mb-4 text-center">New Orders</h2>
+                    <div class="order-list">
+                        <!-- Pending orders will be populated here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchPendingOrders() {
+            try {
+                const response = await fetch('http://localhost:3000/api/orders');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const orders = await response.json();
+
+                // Filter pending orders
+                const pendingOrders = orders.filter(order => order.status === 'Pending');
+
+                const orderListContainer = document.querySelector('.order-list');
+                orderListContainer.innerHTML = ''; // Clear previous data
+
+                if (pendingOrders.length === 0) {
+                    const noOrdersMessage = `<div class="alert alert-info text-center">No Pending Orders</div>`;
+                    orderListContainer.innerHTML = noOrdersMessage;
+                }
+
+                pendingOrders.forEach(order => {
+                    const user = order.user_id ? order.user_id.name : 'Unknown User';
+                    const products = order.products.map(
+                        product => `${product.product_id?.name || 'Unknown Product'} (x${product.quantity})`
+                    ).join(', ');
+
+                    const orderCard = `<div class="order-card">
+                        <h5 class="order-user">${user}</h5>
+                        <p><strong>Products:</strong> ${products}</p>
+                        <p><strong>Total Price:</strong> $${order.total_price}</p>
+                        <p><strong>Status:</strong> ${order.status}</p>
+                        <p><strong>Created At:</strong> ${new Date(order.createdAt).toLocaleDateString()}</p>
+                    </div>`;
+                    orderListContainer.innerHTML += orderCard;
+                });
+            } catch (error) {
+                console.error('Error fetching pending orders:', error);
+            }
+        }
+
+        // Fetch and display pending orders when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchPendingOrders();
+        });
+    </script>
+    
+</body>
+</html>

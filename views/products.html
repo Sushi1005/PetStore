@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- FontAwesome for icons -->
+    <link href="products.css" rel="stylesheet">
+    <title>Products</title>
+   
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side Filter Section -->
+        <div class="filter-section">
+            <!-- Home Icon to redirect back to index.html -->
+            <i class="bi bi-house-door home-icon" onclick="window.location.href='index.html';" style="font-size: 30px; cursor: pointer; color: #2c3e50;"> <img src="arrow.png"style="border-radius: 500px; max-width: 50px;"><img src="logo.jpg" style="border-radius: 500px; max-width: 100px;"></i>
+            <h5>Filter Products by Category</h5>
+            
+            <select class="form-control" id="categoryFilter">
+                <option value="All Categories">All Categories</option>
+                <!-- Dynamic options will be added here -->
+            </select>
+           
+            <button class="btn btn-danger" onclick="clearFilter()">Clear Filter</button> <!-- Clear Button -->
+        </div>
+
+        <!-- Right Side Products Table -->
+        <div class="product-table-section">
+            <h1 class="mt-4">Products</h1>
+            <div class="mb-3 d-flex justify-content-end">
+                <button class="btn btn-success" onclick="showAddProductForm()">Add New Product</button>
+            </div>
+            <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list"></tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Form -->
+    <div id="productForm" class="modal" tabindex="-1" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Add Product</h5>
+                    <button type="button" class="btn-close" onclick="hideProductForm()"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="productFormFields">
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="productName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="productDescription" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="productPrice" required min="0" step="0.01">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productStock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="productStock" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCategory" class="form-label">Category</label>
+                            <select class="form-control" id="productCategory" required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productImage" class="form-label">Image (optional)</label>
+                            <input type="file" class="form-control" id="productImage" accept="image/*">
+                        </div>
+                        <input type="hidden" id="productId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="hideProductForm()">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/products.js"></script>
+   
+</body>
+</html>
